@@ -1,3 +1,12 @@
+-------------------------------------------------------------------------------
+--
+--       filename: options.lua
+--    description:
+--        created: 2025/06/27
+--         author: ticktechman
+--
+-------------------------------------------------------------------------------
+
 local o = vim.opt
 local cs = vim.cmd.colorscheme
 
@@ -8,5 +17,7 @@ o.expandtab = true
 o.termguicolors = true
 o.syntax = "enable"
 o.clipboard = "unnamedplus"
+vim.o.undofile = true
 
 cs("catppuccin")
+-------------------------------------------------------------------------------
