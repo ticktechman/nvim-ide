@@ -87,6 +87,17 @@ require("lazy").setup({
     },
 
     ----------------------------
+    -- tagbar
+    ----------------------------
+    {
+      "majutsushi/tagbar",
+      lazy = false,
+      config = function()
+        vim.g.tagbar_sort = 0
+      end,
+    },
+
+    ----------------------------
     -- status line
     ----------------------------
     {
