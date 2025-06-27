@@ -9,7 +9,6 @@
 
 local g = vim.g
 local map = vim.keymap.set
-local cmd = vim.cmd
 
 g.mapleader = ","
 
@@ -35,16 +34,5 @@ map("v", "<leader>/", "gc", { remap = true })
 --------------------
 -- quick fix toggle
 --------------------
-map("n", "<leader>,", ":call QuickFixToggle()<CR>", { remap = true })
-
-cmd([[
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
-    else
-      cclose
-    endif
-  endfunction
-]])
-
+require("quickfix").setup()
 -------------------------------------------------------------------------------
