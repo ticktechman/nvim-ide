@@ -96,6 +96,27 @@ require("lazy").setup({
       config = function()
         require("lualine").setup({
           options = { theme = require("lualine.themes.onedark") },
+          sections = {
+            lualine_x = {
+              "filetype",
+              "lua_progress",
+              {
+                function()
+                  local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+                  local names = {}
+                  for _, client in pairs(clients) do
+                    if client.name ~= "null-ls" then
+                      table.insert(names, client.name)
+                    end
+                  end
+                  if #names == 0 then
+                    return ""
+                  end
+                  return "  " .. table.concat(names, ", ")
+                end,
+              },
+            },
+          },
         })
       end,
     },
@@ -228,6 +249,7 @@ require("lazy").setup({
           opts = { history = true, updateevents = "TextChanged,TextChangedI" },
           config = function(_, opts)
             require("luasnip").config.set_config(opts)
+            -- vscode format
             require("luasnip.loaders.from_vscode").load()
             require("luasnip.loaders.from_vscode").lazy_load({ paths = { conf_path .. "/snippets" } })
 
