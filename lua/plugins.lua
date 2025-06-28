@@ -98,6 +98,22 @@ require("lazy").setup({
         })
       end,
     },
+    ----------------------------
+    -- terminal
+    ----------------------------
+    -- lazy.nvim
+    {
+      "folke/snacks.nvim",
+      opts = {
+        terminal = { enabled = true },
+      },
+      config = function()
+        require("snacks").setup()
+        vim.keymap.set({ "n", "t" }, "<C-/>", function()
+          require("snacks.terminal").toggle()
+        end, { desc = "Toggle snacks terminal", silent = true })
+      end,
+    },
 
     ----------------------------
     -- file searching
