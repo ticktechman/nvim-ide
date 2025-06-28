@@ -98,10 +98,10 @@ require("lazy").setup({
         })
       end,
     },
+
     ----------------------------
     -- terminal
     ----------------------------
-    -- lazy.nvim
     {
       "folke/snacks.nvim",
       opts = {
@@ -137,7 +137,7 @@ require("lazy").setup({
     },
 
     ----------------------------
-    -- outline
+    -- outline(tagbar)
     ----------------------------
     {
       "simrat39/symbols-outline.nvim",
