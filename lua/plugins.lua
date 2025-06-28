@@ -24,6 +24,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function lsp_name()
+  local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+  local names = {}
+  for _, client in pairs(clients) do
+    if client.name ~= "null-ls" then
+      table.insert(names, client.name)
+    end
+  end
+  if #names == 0 then
+    return ""
+  end
+  return "  " .. table.concat(names, ", ")
+end
 -------------------------------------
 -- plugins
 -------------------------------------
@@ -134,21 +147,7 @@ require("lazy").setup({
             lualine_x = {
               "filetype",
               "lua_progress",
-              {
-                function()
-                  local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-                  local names = {}
-                  for _, client in pairs(clients) do
-                    if client.name ~= "null-ls" then
-                      table.insert(names, client.name)
-                    end
-                  end
-                  if #names == 0 then
-                    return ""
-                  end
-                  return "  " .. table.concat(names, ", ")
-                end,
-              },
+              { lsp_name },
             },
           },
         })
