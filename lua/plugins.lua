@@ -85,7 +85,10 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
       },
       config = function()
+        local api = require("nvim-tree.api")
         require("nvim-tree").setup()
+        vim.keymap.set("n", "l", api.node.open.edit)
+        vim.keymap.set("n", "h", api.node.navigate.parent_close)
       end,
     },
 
