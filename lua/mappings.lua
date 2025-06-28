@@ -18,6 +18,12 @@ map("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 -- map("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true, silent = true })
 map("n", "<leader>t", ":SymbolsOutline<CR>", { noremap = true, silent = true })
 
+-- windows navigation
+map("n", "<C-h>", "<C-w>h", { noremap = true, silent = true }) -- 向左切换窗口
+map("n", "<C-l>", "<C-w>l", { noremap = true, silent = true }) -- 向右切换窗口
+map("n", "<C-j>", "<C-w>j", { noremap = true, silent = true }) -- 向下切换窗口
+map("n", "<C-k>", "<C-w>k", { noremap = true, silent = true }) -- 向上切换窗口
+
 --------------------
 -- telescope
 --------------------
