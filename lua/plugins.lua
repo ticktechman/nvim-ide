@@ -104,15 +104,27 @@ require("lazy").setup({
     ----------------------------
     {
       "folke/snacks.nvim",
+      lazy = false,
       opts = {
-        terminal = { enabled = true },
+        terminal = {
+          win = {
+            position = "bottom", -- "bottom" | "top" | "left" | "right" | "float"
+            height = 0.3,
+          },
+        },
       },
-      config = function()
-        require("snacks").setup()
-        vim.keymap.set({ "n", "t" }, "<C-/>", function()
-          require("snacks.terminal").toggle()
-        end, { desc = "Toggle snacks terminal", silent = true })
-      end,
+
+      keys = {
+        {
+          "<C-/>",
+          mode = { "n", "t" },
+          desc = "Toggle snacks terminal",
+          silent = true,
+          function()
+            require("snacks.terminal").toggle()
+          end,
+        },
+      },
     },
 
     ----------------------------
