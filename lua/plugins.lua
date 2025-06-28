@@ -86,9 +86,16 @@ require("lazy").setup({
       },
       config = function()
         local api = require("nvim-tree.api")
-        require("nvim-tree").setup()
-        vim.keymap.set("n", "l", api.node.open.edit)
-        vim.keymap.set("n", "h", api.node.navigate.parent_close)
+        local function attach(bufnr)
+          local opts = function()
+            return { buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+          vim.keymap.set("n", "l", api.node.open.edit, opts())
+          vim.keymap.set("n", "h", api.node.navigate.parent_close, opts())
+        end
+        require("nvim-tree").setup({
+          on_attach = attach,
+        })
       end,
     },
 
