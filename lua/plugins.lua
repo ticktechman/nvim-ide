@@ -98,6 +98,29 @@ require("lazy").setup({
     },
 
     ----------------------------
+    -- outline
+    ----------------------------
+    {
+      "simrat39/symbols-outline.nvim",
+      cmd = "SymbolsOutline",
+      keys = {
+        { "<leader>t", "<cmd>SymbolsOutline<CR>", desc = "Toggle Symbols Outline" },
+      },
+      config = function()
+        require("symbols-outline").setup({
+          highlight_hovered_item = true,
+          show_guides = true,
+          auto_preview = false,
+          position = "right",
+          width = 20,
+          show_numbers = false,
+          show_relative_numbers = false,
+          show_symbol_details = true,
+        })
+      end,
+    },
+
+    ----------------------------
     -- status line
     ----------------------------
     {

@@ -15,7 +15,8 @@ g.mapleader = ","
 -- common
 map("n", "<leader>z", ":q!<CR>")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
-map("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true, silent = true })
+-- map("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true, silent = true })
+map("n", "<leader>t", ":SymbolsOutline<CR>", { noremap = true, silent = true })
 
 --------------------
 -- telescope
