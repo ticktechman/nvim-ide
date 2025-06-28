@@ -29,7 +29,7 @@ local function lsp_name()
   local names = {}
   for _, client in pairs(clients) do
     if client.name ~= "null-ls" then
-      table.insert(names, client.name)
+      table.insert(names, "[" .. client.name .. "]")
     end
   end
   if #names == 0 then
