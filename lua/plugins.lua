@@ -184,7 +184,12 @@ require("lazy").setup({
     {
       "akinsho/bufferline.nvim",
       version = "*",
+      lazy = false,
       dependencies = "nvim-tree/nvim-web-devicons",
+      keys = {
+        { "H", "<Cmd>BufferLineCyclePrev<CR>", desc = "" },
+        { "L", "<Cmd>BufferLineCycleNext<CR>", desc = "" },
+      },
       config = function()
         require("bufferline").setup()
       end,
