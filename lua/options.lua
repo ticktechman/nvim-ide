@@ -19,5 +19,5 @@ o.syntax = "enable"
 o.clipboard = "unnamedplus"
 vim.o.undofile = true
 
-cs("catppuccin")
+cs("tokyonight")
 -------------------------------------------------------------------------------

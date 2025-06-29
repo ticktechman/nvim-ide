@@ -238,6 +238,9 @@ require("lazy").setup({
       opts = {
         install_root_dir = conf_path .. "/mason",
       },
+      config = function()
+        require("mason").setup()
+      end,
     },
     {
       "mason-org/mason-lspconfig.nvim",

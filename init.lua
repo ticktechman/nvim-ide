@@ -11,5 +11,6 @@ require("plugins")
 require("options")
 require("mappings")
 require("autocmds")
+require("languages").ensure_installed()
 
 -------------------------------------------------------------------------------
