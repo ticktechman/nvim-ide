@@ -9,6 +9,7 @@
 
 local conf_path = vim.fn.stdpath("config")
 local map = vim.keymap.set
+local languages = require("languages")
 
 -- use lazy.nvim for plugin management
 local lazypath = conf_path .. "/lazy/lazy.nvim"
@@ -282,8 +283,7 @@ require("lazy").setup({
           },
         }
         vim.lsp.config("lua_ls", { settings = lua_lsp_settings })
-        vim.lsp.enable("lua_ls")
-        vim.lsp.enable("clangd")
+        languages.enable_all_servers()
 
         -- diagnostic messages config
         local x = vim.diagnostic.severity
@@ -304,15 +304,7 @@ require("lazy").setup({
       event = { "BufReadPre", "BufNewFile" },
       config = function()
         require("conform").setup({
-          formatters_by_ft = {
-            lua = { "stylua" },
-            c = { "clang-format" },
-            cpp = { "clang-format" },
-            javascript = { "prettier" },
-            typescript = { "prettier" },
-            python = { "black" },
-            sh = { "shfmt" },
-          },
+          formatters_by_ft = languages.for_conform(),
           format_on_save = {
             timeout_ms = 500,
             lsp_fallback = true,
