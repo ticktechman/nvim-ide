@@ -36,6 +36,7 @@ M.enable_all_servers = function()
 end
 
 M.ensure_installed = function()
+  require("mason").setup({ install_root_dir = vim.fn.stdpath("config") .. "/mason" })
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function(args)
@@ -56,7 +57,6 @@ M.ensure_installed = function()
       end
     end,
   })
-  return 0
 end
 
 return M
