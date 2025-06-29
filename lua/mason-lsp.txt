@@ -1,3 +1,5 @@
+              mason-package-name:language server name
+----------------------------------------------------------------------------------
                         thriftls:thriftls
                    stylelint-lsp:stylelint_lsp
         pkgbuild-language-server:pkgbuild_language_server

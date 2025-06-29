@@ -47,12 +47,16 @@ M.ensure_installed = function()
         return
       end
 
+      local install = function(name)
+        local ok, pkg = pcall(registry.get_package, name)
+        if ok and not pkg:is_installed() then
+          pkg:install()
+        end
+      end
+
       for _, tool in pairs(spec) do
         if type(tool) == "string" then
-          local ok, pkg = pcall(registry.get_package, tool)
-          if ok and not pkg:is_installed() then
-            pkg:install()
-          end
+          install(tool)
         end
       end
     end,
