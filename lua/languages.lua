@@ -1,17 +1,17 @@
 local M = {}
 
 M.data = {
-  lua = { lsp = "lua-language-server", formatter = "stylua" },
-  python = { lsp = "pyright", formatter = "black", linter = "ruff" },
-  javascript = { lsp = "typescript-language-server", formatter = "prettierd", linter = "eslint_d" },
-  typescript = { lsp = "typescript-language-server", formatter = "prettierd", linter = "eslint_d" },
-  rust = { lsp = "rust_analyzer", formatter = "rustfmt" },
-  go = { lsp = "gopls", formatter = "gofumpt", linter = "golangci_lint" },
-  markdown = { lsp = "marksman", formatter = "prettierd" },
-  json = { lsp = "json-lsp", formatter = "prettierd" },
-  c = { lsp = "clangd", formatter = "clang-format", linter = "clang-tidy" },
-  cpp = { lsp = "clangd", formatter = "clang-format", linter = "clang-tidy" },
-  sh = { lsp = "bash-language-server", formatter = "shfmt", linter = "shellcheck" },
+  lua = { lang_server = "lua-language-server", formatter = "stylua" },
+  python = { lang_server = "pyright", formatter = "black", linter = "ruff" },
+  javascript = { lang_server = "typescript-language-server", formatter = "prettierd", linter = "eslint_d" },
+  typescript = { lang_server = "typescript-language-server", formatter = "prettierd", linter = "eslint_d" },
+  rust = { lang_server = "rust_analyzer", formatter = "rustfmt" },
+  go = { lang_server = "gopls", formatter = "gofumpt", linter = "golangci_lint" },
+  markdown = { lang_server = "marksman", formatter = "prettierd" },
+  json = { lang_server = "json-lsp", formatter = "prettierd" },
+  c = { lang_server = "clangd", formatter = "clang-format", linter = "clang-tidy" },
+  cpp = { lang_server = "clangd", formatter = "clang-format", linter = "clang-tidy" },
+  sh = { lang_server = "bash-language-server", formatter = "shfmt", linter = "shellcheck" },
 }
 
 M.for_conform = function()
@@ -25,9 +25,10 @@ end
 M.enable_all_servers = function()
   local servers = {}
   local mappings = require("mason-lspconfig.mappings").get_mason_map()
+  local pkg2lsp = mappings.package_to_lspconfig
   for _, v in pairs(M.data) do
-    if not servers[v.lsp] then
-      local lspname = mappings.package_to_lspconfig[v.lsp]
+    if not servers[v.lang_server] then
+      local lspname = pkg2lsp[v.lang_server]
       if lspname then
         vim.lsp.enable(lspname)
       end
