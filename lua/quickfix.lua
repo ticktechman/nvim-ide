@@ -10,22 +10,19 @@
 local M = {}
 
 function M.toggle()
-  local fn = vim.fn
-  local cmd = vim.cmd
-
-  local wins = fn.getwininfo()
-  local quickfix_open = false
+  local wins = vim.fn.getwininfo()
+  local opened = false
   for _, win in ipairs(wins) do
     if win.quickfix == 1 then
-      quickfix_open = true
+      opened = true
       break
     end
   end
 
-  if quickfix_open then
-    cmd("cclose")
+  if opened then
+    vim.cmd("cclose")
   else
-    cmd("copen")
+    vim.cmd("copen")
   end
 end
 
